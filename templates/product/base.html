@@ -30,7 +30,7 @@
             overflow: hidden;
             position: fixed;
             top: 0;
-            margin-left: 80%;
+            margin-left: 70%;
             width: auto;
         }
         
@@ -340,15 +340,26 @@
             <nav>
                 <ul class="navList">
                     <li class="navLi">
-                        <a href="{% url 'Cart' %}">Cart</a>
+                        <a href="{% url 'Feed' %}">Feed</a>
                     </li>
                     <li class="navLi">
-                        <a href="{% url 'ProductList' %}">Home</a>
+                        <a href="{% url 'Register' %}">Add a product</a>
+                    </li>
+                    <li class="navLi">
+                        <a href="{% url 'Profile' %}">Profile</a>
+                    </li>
+                    <li class="navLi">
+                        <a href="{% url 'searchList' %}">Home</a>
+                    </li>
+                    <li class="navLi">
+                        <a href="{% url 'Logout' %}">LogOut</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
+
+
     <br>
     <div class="container">
         {% block content %} {% endblock content %}

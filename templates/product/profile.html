@@ -1,12 +1,11 @@
-
-{% extends 'product/search.html' %} 
+{% extends 'product/base.html' %}
 {% block content %}
-
 <div class="testbox">
 
     <div class="colums">
 
         {% for object in obj %}
+
         <div class="prodContainer">
             <h2 style="text-align:center"></h2>
 
@@ -15,7 +14,7 @@
                     <button>
                                 <img src="{{ object.picLink }}" alt="{{ object.name }}" style="width:100%">
                                 <h2>{{ object.name }}</h2>
-                                <p class="price">R.{{ object.price }}</p>
+                                <p class="price">${{ object.price }}</p>
                                 <p style="color: white;">{{ object.description }}</p>
                             </button>
                 </form>

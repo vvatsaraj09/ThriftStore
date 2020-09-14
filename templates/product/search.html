@@ -1,0 +1,14 @@
+{% extends 'product/base.html' %}
+
+{% block content %}
+<form method='GET' action=".">
+    <input type="text" name="q" placeholder="Search by category"/>
+    <input type="text" name="desc" placeholder="Search by Specifications"/>
+    <input type="text" name="seller" placeholder="Search by Seller"/>
+    <input type="submit" value="Search"/>
+</form>	
+{% for message in messages %}
+<center class="message">{{message}}</center>
+{% endfor %}
+		
+{% endblock content %}

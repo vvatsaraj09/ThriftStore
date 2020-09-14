@@ -15,18 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authentication.views import registerPage,loginPage
-from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage
+from authentication.views import registerPage,loginPage,homePage,logout_view
+from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('products/cart', cartPage, name="Cart"),
+    path('products/profile', profilePage, name="Profile"),
     path('products/list/<int:id>/added', productCartPage, name="ProductCart"),
     path('products/list/<int:id>/', productPage, name="Product"),
     path('products/list/', productListPage, name="ProductList"),
-    path('', RedirectView.as_view(url='/products/list')),
+    path('products/search/', search, name="searchList"),
+    path('', RedirectView.as_view(url='/auth/index')),
     path('products/register/', registerProductPage, name="Register"),
     path('auth/login/', loginPage, name="Login"),
+    path('auth/index/',homePage,name= "Home"),
+    path('auth/login/',logout_view,name= "Logout"),
+    path('products/feed/',feed,name= "Feed"),
     path('auth/register/', registerPage, name="Sign Up"),
     path('admin/', admin.site.urls),
 ]
