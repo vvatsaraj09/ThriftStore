@@ -43,8 +43,13 @@ def cartPage(request):
 
 def feed(request):
     obj = Product.objects.filter(active=True)
-    context = {'object':obj}
-    return render(request,"product/search.html",context)
+    results = []
+    for objs in obj:
+        if objs.seller == "Market":
+            results.append(objs)
+            print(results)
+    context = {"obj" : results}
+    return render(request, "product/feed.html", context)
     
 def search(request):
     obj = Product.objects.filter(active=True)
