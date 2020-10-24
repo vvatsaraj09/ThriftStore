@@ -1,0 +1,49 @@
+{% extends 'product/base.html' %}
+{% block content %}
+<div class="testbox">
+    <h>{{object.username}}</h>
+</div>
+<div class="testbox">
+    <h>{{object.email}}</h><br>
+</div>
+<div class="testbox">
+    <h>No of Followers:   {{followers}}</h>
+</div>
+<div class="testbox">
+    <h>No of Following:   {{following}}</h><br>
+</div>
+<div class="testbox">
+    {% if flag %}
+    <h>You follow this person</h>
+{% else %}
+<form action="" method="POST"> {% csrf_token %}
+<button name = "addFolllwer">Follow</button>
+</form>
+{% endif %}
+</div>
+
+    <div class="colums">
+
+        {% for pro in pros %}
+
+        <div class="prodContainer">
+            <h2 style="text-align:center"></h2>
+
+            <div class="card">
+                <form > {% csrf_token %}
+                    <button>
+                                <img src="{{ pro.picLink }}" alt="{{ object.name }}" style="width:100%">
+                                <h2>{{ pro.name }}</h2>
+                                <p class="price">${{ pro.price }}</p>
+                                <p style="color: white;">{{ pro.description }}</p>
+                            </button>
+                </form>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+{% endblock content %}

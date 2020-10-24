@@ -3,6 +3,9 @@ from .forms import CreateProductForm
 from django.shortcuts import render, get_object_or_404
 from datetime import date
 from .models import Product
+from django.contrib.auth.models import User
+from followers.models import Followers
+# from authentication.models import User
 from django.contrib import messages
 cart = []
 
@@ -42,15 +45,46 @@ def cartPage(request):
     return render(request, "product/cart.html", context)
 
 def feed(request):
+    arr = []
+    followers = Followers.objects.filter(follower = request.user)
+    for a in followers:
+        arr.append(a.following)
     obj = Product.objects.filter(active=True)
     results = []
     for objs in obj:
-        if objs.seller == "Market":
+        if objs.seller in arr:
             results.append(objs)
             print(results)
     context = {"obj" : results}
     return render(request, "product/feed.html", context)
+
+def userSearch(request,username):
+    object = User.objects.get(username=username)
+    objs = Product.objects.filter(seller=object.username )
+    fol = Followers.objects.all()
+    followers = Followers.objects.filter(follower = request.user)
+    flag =  False
+    no_followers = 0
+    no_following = 0
+    for a in fol:
+        if a.following == username:
+            no_following+=1 
+        elif a.followers == username:
+            no_followers+=1
+    for a in followers:
+        if a.following  == username:
+            flag =  True 
+            break
+    context = {'object' : object, "pros":objs, "flag":flag, "followers":no_followers, "following": no_following}
     
+    if request.method == 'POST':
+        a=Followers()
+        a.follower= request.user
+        a.following= username
+        a.save()
+        context = {'object' : object, "pros":objs, "flag":True, "followers":no_followers, "following": no_following}
+    return render(request, "product/user_profile.html", context)
+
 def search(request):
     obj = Product.objects.filter(active=True)
     query = request.GET.get('q','')

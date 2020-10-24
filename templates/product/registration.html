@@ -6,6 +6,11 @@
         <div class="banner">
           <h1>Product Registration</h1>
         </div>
+        
+        <div class="item" >
+          {{ form.category.label }}
+          {{ form.category }}
+        </div>
         <div class="colums">
           <div class="item">
             {{ form.name.label }}
@@ -23,13 +28,13 @@
             {{ form.price.label }}
             {{ form.price }}
           </div>
-          <div>
-            {{ form.discounted.label }}
-            {{ form.discounted }}
-          </div>
           <div class="item">
             {{ form.discount.label }}
             {{ form.discount }}
+          </div>
+          <div>
+            {{ form.color.label }}
+            {{ form.color }}
           </div>
           <div>
             {{ form.active.label }}

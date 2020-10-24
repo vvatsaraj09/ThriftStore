@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication.views import registerPage,loginPage,homePage,logout_view
-from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed
+from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed,userSearch
 from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -24,6 +24,8 @@ urlpatterns = [
     path('products/list/<int:id>/added', productCartPage, name="ProductCart"),
     path('products/list/<int:id>/', productPage, name="Product"),
     path('products/list/', productListPage, name="ProductList"),
+    path('products/search/<str:username>/', userSearch, name="userSearch"),
+    # path('products/search_profile/', userSearch, name="userSearch"),
     path('products/search/', search, name="searchList"),
     path('', RedirectView.as_view(url='/auth/index')),
     path('products/register/', registerProductPage, name="Register"),
