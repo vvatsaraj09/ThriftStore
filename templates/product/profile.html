@@ -1,5 +1,6 @@
 {% extends 'product/base.html' %}
 {% block content %}
+
     <style>
         /* Split the screen in half */
         .split {
@@ -21,7 +22,7 @@
         .right {
             right: 0;
             width: 70%;
-            height: 100%;
+            height: 80%;
         }
     </style>
     <div class="split left">
@@ -46,59 +47,9 @@
                 <br>
             </div>
             <div class="testbox" style="display: block;">
-            <form action="{% url 'view_connections' %}" method="GET"> {% csrf_token %}
-                <button type="submit" name='view_connections' value={{ view_connections }}>View Connections</button>
-            </form>{% extends 'product/base.html' %}
-{% block content %}
-    <style>
-        /* Split the screen in half */
-        .split {
-        {#height: 100%;#} position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            margin-top: 100px;
-            padding-top: 20px;
-        }
-
-        /* Control the left side */
-        .left {
-            left: 0;
-            width: 30%;
-        }
-
-        /* Control the right side */
-        .right {
-            right: 0;
-            width: 70%;
-            height: 100%;
-        }
-    </style>
-    <div class="split left">
-        <div class="testbox" style="display: block;">
-            <div class="testbox" style="display: block;">
-                <h name="username">{{ object.username }}</h>
-            </div>
-
-            <div class="testbox" style="display: block;">
-                <form action="{% url 'update_user' %}" method="GET"> {% csrf_token %}
-
-                    <input type="text" name="email" value='{{ object.email }}'/>
-
-                    <button type="submit" name='update_user' value={{ update_user }}>Change Email</button>
+                <form action="{% url 'view_connections' %}" method="GET"> {% csrf_token %}
+                    <button type="submit" name='view_connections' value={{ view_connections }}>View Connections</button>
                 </form>
-            </div>
-            <div class="testbox" style="display: block;">
-                <h>No of Following : {{ following }}</h>
-            </div>
-            <div class="testbox" style="display: block;">
-                <h>No of Folllowers: {{ followers }}</h>
-                <br>
-            </div>
-            <div class="testbox" style="display: block;">
-            <form action="{% url 'view_connections' %}" method="GET"> {% csrf_token %}
-                <button type="submit" name='view_connections' value={{ view_connections }}>View Connections</button>
-            </form>
             </div>
 
         </div>
@@ -143,55 +94,6 @@
 
         </div>
     </div>
-
-
-
-{% endblock content %}
-            </div>
-
-        </div>
-    </div>
-
-    <div class="split right">
-        <div class="testbox">
-            <div class="colums" style="display: block; width: 400px; margin-top: 500px">
-
-                {% for object in obj %}
-
-                    <div class="prodContainer">
-                        <h2 style="text-align:center"></h2>
-
-                        <div class="card">
-                            <form action="{% url 'update' %}" method="GET"> {% csrf_token %}
-                                <button>
-                                    <img src="{{ object.picLink }}" alt="{{ object.name }}" style="width:100%">
-
-                                    <input type="text" name="name" value='{{ object.name }}' readonly/>
-                                    <!-- <h2>{{ object.name }}</h2> -->
-                                    <p class="price">${{ object.price }}</p>
-
-                                    <input type="text" name="description" value='{{ object.description }}' readonly/>
-                                    <!-- <p style="color: white;">{{ object.description }}</p> -->
-
-                                    {% if object.active %}
-                                        <h2>Available</h2>
-                                        <button type="submit" name='update' value={{ update }}>Update to Sold out
-                                        </button>
-                                    {% else %}
-                                        <h2>Sold Out</h2>
-                                    {% endif %}
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        </div>
-    </div>
-
 
 
 {% endblock content %}

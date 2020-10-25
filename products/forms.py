@@ -9,4 +9,7 @@ class CreateProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+        widgets = {
+            'category': forms.Textarea(attrs={'rows': 1, 'cols': 15}),
+        }
 

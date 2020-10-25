@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from authentication.views import registerPage,loginPage,homePage,logout_view
-from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed,add_follower,update,update_user,delete_follower,view_connections
+
+from authentication.views import *
+from products.views import *
+from followers.views import *
+from feed.views import *
+
 from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -27,19 +31,19 @@ urlpatterns = [
     # path('products/search/<str:username>/', userSearch, name="userSearch"),
     # path('products/search_profile/', userSearch, name="userSearch"),
     # path('products/search_profile/', userSearch, name="userSearch"),
-    path('products/search/', search, name="searchList"),
-    path('products/search/add_follower/',add_follower,name="add_follower"),
-    path('products/search/delete_follower/',delete_follower,name="delete_follower"),
-    path('products/search/view_connections/',view_connections,name="view_connections"),
-    path('products/search/profile/',update,name="update"),
-    path('products/search/profile/update_user',update_user,name="update_user"),
+    path('products/search/', search_product, name="searchList"),
+    path('products/search/add_follower/', add_follower, name="add_follower"),
+    path('products/search/delete_follower/', delete_follower, name="delete_follower"),
+    path('products/search/view_connections/', view_connections, name="view_connections"),
+    path('products/search/profile/', update, name="update"),
+    path('products/search/profile/update_user', update_user, name="update_user"),
 
     path('', RedirectView.as_view(url='/auth/index')),
-    path('products/register/', registerProductPage, name="Register"),
-    path('auth/login/', loginPage, name="Login"),
-    path('auth/index/',homePage,name= "Home"),
-    path('auth/login/',logout_view,name= "Logout"),
-    path('products/feed/',feed,name= "Feed"),
+    path('products/register/', add_product, name="Register"),
+    path('auth/login/', get_user, name="Login"),
+    path('auth/index/', homePage, name="Home"),
+    path('auth/login/', logout_view, name="Logout"),
+    path('products/feed/', get_feed, name="Feed"),
     path('auth/register/', registerPage, name="Sign Up"),
     path('admin/', admin.site.urls),
 ]

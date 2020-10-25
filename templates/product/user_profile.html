@@ -1,58 +1,92 @@
 {% extends 'product/base.html' %}
 {% block content %}
-<div class="testbox">
-    <h name = "username">{{object.username}}</h>
-</div>
-<div class="testbox">
-    <h>{{object.email}}</h><br>
-</div>
-<div class="testbox">
-    <h>No of Following :   {{following}}</h>
-</div>
-<div class="testbox">
-    <h>No of Followers:   {{followers}}</h><br>
-</div>
-<div class="testbox">
-    {% if flag %}
-    <form action="{% url 'delete_follower' %}" method="GET">
-        {% csrf_token %}
-            <input type="text" name="username" value = '{{object.username}}' readonly/>
-            <button type="submit" name='delete_follower' value={{delete_follower}}>Unfollow This user</button>
-         </form>
-{% else %}
-<!-- <form method="POST" action="."> {% csrf_token %}
+    <style>
+        /* Split the screen in half */
+        .split {
+        {#height: 100%;#} position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            margin-top: 100px;
+            padding-top: 20px;
+        }
+
+        /* Control the left side */
+        .left {
+            left: 10px;
+            width: 30%;
+        }
+
+        /* Control the right side */
+        .right {
+            right: 0;
+            width: 70%;
+            height: 80%;
+        }
+    </style>
+    <div class="split left">
+        <div class="testbox" style="display: block;">
+            <div class="testbox" style="display: block;">
+                <div style="font-size: 50px" name="username">{{ object.username }}</div>
+            </div>
+            <div class="testbox" style="display: block;">
+                <div style="font-size: 50px">{{ object.email }}</div>
+            </div>
+            <div class="testbox" style="display: block;">
+                <div style="font-size: 50px">No of Following : {{ following }}</div>
+            </div>
+            <div class="testbox" style="display: block;">
+                <div style="font-size: 50px">No of Followers: {{ followers }}</div>
+                <br>
+            </div>
+        </div>
+        <div class="testbox" style="display: block;">
+            {% if flag %}
+                <form action="{% url 'delete_follower' %}" method="GET" style="width:70%; margin-bottom: 50px;">
+                    {% csrf_token %}
+                    <input type="text" name="username" value='{{ object.username }}' readonly/>
+                    <center>
+                        <button type="submit" name='delete_follower' value={{ delete_follower }}>Unfollow This user
+                        </button>
+                    </center>
+                </form>
+            {% else %}
+                <!-- <form method="POST" action="."> {% csrf_token %}
 <button>Follow</button>
 </form> -->
-<form action="{% url 'add_follower' %}" method="GET">
-    {% csrf_token %}
-        <input type="text" name="username" value = '{{object.username}}' readonly/>
-        <button type="submit" name='add_follower' value={{add_follower}}>Follow</button>
-     </form>
-{% endif %}
-</div>
+                <form action="{% url 'add_follower' %}" method="GET" style="width:50%; margin-bottom: 50px;">
+                    {% csrf_token %}
+                    <input type="text" name="username" value='{{ object.username }}' readonly/>
+                    <center>
+                        <button type="submit" name='add_follower' value={{ add_follower }}>Follow</button>
+                    </center>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class="split right">
+        <div class="colums" style="justify-content: center;">
 
-    <div class="colums">
+            {% for pro in pros %}
 
-        {% for pro in pros %}
+                <div class="prodContainer" style="width: 100%;">
+                    <h2 style="text-align:center"></h2>
 
-        <div class="prodContainer">
-            <h2 style="text-align:center"></h2>
-
-            <div class="card">
-                <form > {% csrf_token %}
-                    <button>
+                    <div class="card">
+                        <form> {% csrf_token %}
+                            <button>
                                 <img src="{{ pro.picLink }}" alt="{{ object.name }}" style="width:100%">
                                 <h2>{{ pro.name }}</h2>
                                 <p class="price">${{ pro.price }}</p>
                                 <p style="color: white;">{{ pro.description }}</p>
                             </button>
-                </form>
-            </div>
+                        </form>
+                    </div>
+                </div>
+
+            {% endfor %}
+
         </div>
 
-        {% endfor %}
-
     </div>
-
-
 {% endblock content %}
