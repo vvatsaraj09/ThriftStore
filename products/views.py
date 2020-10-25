@@ -199,6 +199,7 @@ def geter(a):
     lattitude = g.latlng[0]
     longitude = g.latlng[1]
     return abs(int(lattitude)-int(a.lattitude))+abs(int(longitude)-int(a.longitude))
+    
 def search(request):
     if request.method == "GET":
         obj = Product.objects.filter(active=True)
