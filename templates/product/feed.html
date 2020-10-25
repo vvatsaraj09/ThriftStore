@@ -6,9 +6,9 @@
 
         <div class="colums">
 
-            {% for object in obj %}
-                <div class="prodContainer">
-                    <h2 style="text-align:center"></h2>
+        {% for object in obj %}
+        <div class="prodContainer" style="margin: 50px;">
+            <h2 style="text-align:center"></h2>
 
                     <div class="card">
                         <form method="POST" action="{{ object.id }}/"> {% csrf_token %}
