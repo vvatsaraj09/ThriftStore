@@ -1,60 +1,61 @@
 {% extends 'product/base.html' %}
 
 {% block content %}
-  <div class="testbox">
-      <form action="" method="POST"> {% csrf_token %}
-        <div class="banner">
+  <div class="testbox" style="color: white; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWP-cvNoB6jPlcStWJGRJPBy4bouMHC2uXfA&usqp=CAU'); background-repeat: no-repeat; background-size: cover;">
+      <form action="" method="POST" style="width: 50%;"> {% csrf_token %}
+        <div style="margin-bottom: 60px;">
           <h1>Product Registration</h1>
         </div>
         
-        <div class="item" >
+        <div 
+        <div class="item" style="color: white;">
           {{ form.category.label }}
           {{ form.category }}
         </div>
-        <div class="colums">
-          <div class="item">
+        <div class="colums" >
+          <div class="item" style="color: white;">
             {{ form.name.label }}
             {{ form.name }}
           </div>
-          <div class="item">
+          <div class="item" style="color: white;">
             {{ form.seller.label }}
             {{ form.seller }}
           </div>
-          <div class="item">
+          <div class="item" style="color: white;">
             {{ form.picLink.label }}
             {{ form.picLink }}
           </div>
-          <div class="item">
+          <div class="item" style="color: white;">
             {{ form.price.label }}
             {{ form.price }}
           </div>
-          <div class="item">
+          <div class="item" style="color: white;">
             {{ form.discount.label }}
             {{ form.discount }}
           </div>
-          <div>
+          <div class="item" style="color: white;">
             {{ form.color.label }}
             {{ form.color }}
           </div>
-          <div>
+          <div class="item" style="color: white;">
             {{ form.active.label }}
             {{ form.active }}
           </div>
-          <div>
+          <div class="item" style="color: white;">
             {{ form.date.label }}
             {{ form.date }}
           </div>
-          <div>
+          <div class="item" style="color: white;">
             {{ form.lattitude.label }}
             {{ form.lattitude }}
           </div>
-          <div>
+          <div class="item" style="color: white;">
             {{ form.longitude.label }}
             {{ form.longitude }}
           </div>
         </div>
-        <div class="item">
-        {{ form.description.label }}
+        <div class="item" style="color: white;">
+          {{ form.description.label }}
         {{ form.description }}
         </div>
         <br>
