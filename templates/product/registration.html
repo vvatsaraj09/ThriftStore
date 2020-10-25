@@ -44,6 +44,14 @@
             {{ form.date.label }}
             {{ form.date }}
           </div>
+          <div>
+            {{ form.lattitude.label }}
+            {{ form.lattitude }}
+          </div>
+          <div>
+            {{ form.longitude.label }}
+            {{ form.longitude }}
+          </div>
         </div>
         <div class="item">
         {{ form.description.label }}
@@ -60,4 +68,14 @@
         </div>
       </form>
     </div>
+    <script>
+      if(navigator.geolocation)
+            {
+              navigator.geolocation.getCurrentPosition(function(position){
+                document.getElementById("lattitude").value = position['coords']['latitude'];
+                document.getElementById("lattitude").value = position['coords']['longitude'];
+              console.log(position['coords']['longitude']);
+            });
+            }
+    </script>
 {% endblock content %}

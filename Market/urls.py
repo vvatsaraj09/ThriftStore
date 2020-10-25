@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication.views import registerPage,loginPage,homePage,logout_view
-from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed,userSearch
+from products.views import registerProductPage,productListPage,productPage,productCartPage,cartPage,profilePage,search,feed,add_follower,update,update_user,delete_follower,view_connections
 from django.views.generic import RedirectView
 
 urlpatterns = [
@@ -24,9 +24,16 @@ urlpatterns = [
     path('products/list/<int:id>/added', productCartPage, name="ProductCart"),
     path('products/list/<int:id>/', productPage, name="Product"),
     path('products/list/', productListPage, name="ProductList"),
-    path('products/search/<str:username>/', userSearch, name="userSearch"),
+    # path('products/search/<str:username>/', userSearch, name="userSearch"),
+    # path('products/search_profile/', userSearch, name="userSearch"),
     # path('products/search_profile/', userSearch, name="userSearch"),
     path('products/search/', search, name="searchList"),
+    path('products/search/add_follower/',add_follower,name="add_follower"),
+    path('products/search/delete_follower/',delete_follower,name="delete_follower"),
+    path('products/search/view_connections/',view_connections,name="view_connections"),
+    path('products/search/profile/',update,name="update"),
+    path('products/search/profile/update_user',update_user,name="update_user"),
+
     path('', RedirectView.as_view(url='/auth/index')),
     path('products/register/', registerProductPage, name="Register"),
     path('auth/login/', loginPage, name="Login"),

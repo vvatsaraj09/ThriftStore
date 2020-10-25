@@ -10,3 +10,5 @@ class Product(models.Model):
     price       = models.DecimalField(decimal_places=2,max_digits=10000)
     active      = models.BooleanField(default=True)
     date        = models.DateField(null=True)
+    lattitude  = models.DecimalField(decimal_places=14,max_digits=10000)
+    longitude  = models.DecimalField(decimal_places=14,max_digits=10000)

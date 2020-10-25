@@ -9,7 +9,11 @@
 </form>	
 
 
-<form method='POST' action="{{ user }}/"> {% csrf_token %}
+<!-- <form method='POST' action="{{ user }}/"> {% csrf_token %}
+<input type="text" name="user" placeholder="Search users"/>
+<input type="submit" value="Search user"/></form>	 -->
+
+<form method='POST' action="."> {% csrf_token %}
 <input type="text" name="user" placeholder="Search users"/>
 <input type="submit" value="Search user"/></form>	
 {% for message in messages %}
