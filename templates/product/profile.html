@@ -4,7 +4,8 @@
     <style>
         /* Split the screen in half */
         .split {
-        {#height: 100%;#} position: fixed;
+        {#height: 100%;#} 
+            position: fixed;
             z-index: 1;
             top: 0;
             overflow-x: hidden;
@@ -58,14 +59,16 @@
     <div class="split right">
         <div class="testbox">
             <div class="colums" style="display: block; width: 400px; margin-top: 500px">
-
+                {% if not obj %}
+                <img src="https://img.republicworld.com/republic-prod/stories/promolarge/xxhdpi/1kutzil5lj0nvfsf_1596544016.jpeg?tr=w-812,h-464" alt="No product" style="width:100%">
+                {% else %}
                 {% for object in obj %}
 
                     <div class="prodContainer">
                         <h2 style="text-align:center"></h2>
 
                         <div class="card">
-                            <form action="{% url 'update' %}" method="GET"> {% csrf_token %}
+                            <form action="{% url 'update_product' %}" method="GET"> {% csrf_token %}
                                 <button>
                                     <img src="{{ object.picLink }}" alt="{{ object.name }}" style="width:100%">
 
@@ -89,6 +92,7 @@
                     </div>
 
                 {% endfor %}
+                {% endif %}
 
             </div>
 

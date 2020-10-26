@@ -9,7 +9,7 @@ from products.views import add_product
 from django.contrib import messages
 
 
-def registerPage(request):
+def add_user(request):
     form = CreateUserForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -18,23 +18,6 @@ def registerPage(request):
         form = CreateUserForm()
     context = {'form': form}
     return render(request, 'auth/signUp.html', context)
-
-
-def get_user(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Logged in as " + username)
-            # redirect('')
-            return redirect(add_product)
-        else:
-            messages.info(request, 'Username OR Password is incorrect!')
-    context = {}
-    return render(request, 'auth/login.html', context)
-
 
 def update_user(request):
     if request.GET:
@@ -54,13 +37,26 @@ def update_user(request):
             context = {'obj': obj, 'object': request.user, "followers": no_followers, "following": no_following}
         return render(request, "product/profile.html", context)
 
+def get_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Logged in as " + username)
+            # redirect('')
+            return redirect(add_product)
+        else:
+            messages.info(request, 'Username OR Password is incorrect!')
+    context = {}
+    return render(request, 'auth/login.html', context)
+
+def logout(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect("auth/login")
 
 def homePage(request):
     context = {}
     return render(request, "auth/index.html")
-
-
-def logout_view(request):
-    logout(request)
-    messages.info(request, "Logged out successfully!")
-    return redirect("auth/login")
